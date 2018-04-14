@@ -8,4 +8,7 @@ import com.excalibur.ftrp.properties.User;
 @Transactional//开启事务支持
 public interface UserRepository extends JpaRepository<User,String>{
 
+	//select * from user where username = ?
+	User findByUsername(String username);
+	
 }

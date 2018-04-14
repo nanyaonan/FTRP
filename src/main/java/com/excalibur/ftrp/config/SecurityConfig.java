@@ -5,9 +5,13 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.excalibur.ftrp.repository.UserRepository;
@@ -45,5 +49,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             .rememberMe()
                 .tokenValiditySeconds(2419200).key("FTRP");//启用remeber-me功能，设置为四周有效，默认两周，密匙为hyh
 	}
+	
+	@Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(new UserDetailsService() {
+            @Override
+            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+                return userRepository.findOne(username);//验证账户
+            }
+        });
+        //auth.jdbcAuthentication().dataSource(dataSource);//基于数据库表进行认证，调用默认的方法进行认证
+    }
 
 }
