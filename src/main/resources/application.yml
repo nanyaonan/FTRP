@@ -1,18 +1,18 @@
 server:
-  port: 8080
+  port: 8080 #tomcat监听端口
 spring:
   resources:
-    static-locations: ["classpath:/static/"]
-  datasource:
+    static-locations: ["classpath:/static/"] #静态资源所在目录
+  datasource: #数据库配置
     driver-class-name: 
     username: 
     password: 
     url: 
     platform: 
-  jpa:
+  jpa: #jpa配置
     generate-ddl: true
     show-sql: true
     hibernate:
       ddl-auto: update
   thymeleaf:
-    cache: false
+    cache: false #关闭缓存，加载实时页面
