@@ -16,21 +16,21 @@ public class User implements UserDetails{
 
     @Id
     @Column(length = 30)
-    private String username;
+    private String username;//用户名
     @Column(length = 30)
-    private String password;
+    private String password;//密码
     @Column(length = 10)
-    private boolean enabled;
+    private boolean isenabled;//账户是否禁用
     @Column(length = 30)
-    private String fullname;
+    private String fullname;//姓名
     @Column(length = 10)
-    private boolean accountNonExpired;
+    private boolean isaccountNonExpired;//账户是否过期
     @Column(length = 10)
-    private boolean accountNonLocked;
+    private boolean isaccountNonLocked;//账户是否加锁
     @Column(length = 10)
-    private boolean credentialsNonExpired;
+    private boolean iscredentialsNonExpired;//证书是否过期
     @Column(length = 10)
-    private String role;
+    private String role;//角色
 
     @Override
     public String getUsername() {
@@ -50,8 +50,8 @@ public class User implements UserDetails{
         this.password = password;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setEnabled(boolean isenabled) {
+        this.isenabled = isenabled;
     }
 
     public String getFullname() {
@@ -62,16 +62,16 @@ public class User implements UserDetails{
         this.fullname = fullname;
     }
 
-    public void setAccountNonExpired(boolean accountNonExpired) {
-        this.accountNonExpired = accountNonExpired;
+    public void setAccountNonExpired(boolean isaccountNonExpired) {
+        this.isaccountNonExpired = isaccountNonExpired;
     }
 
-    public void setAccountNonLocked(boolean accountNonLocked) {
-        this.accountNonLocked = accountNonLocked;
+    public void setAccountNonLocked(boolean isaccountNonLocked) {
+        this.isaccountNonLocked = isaccountNonLocked;
     }
 
-    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-        this.credentialsNonExpired = credentialsNonExpired;
+    public void setCredentialsNonExpired(boolean iscredentialsNonExpired) {
+        this.iscredentialsNonExpired = iscredentialsNonExpired;
     }
 
     public String getRole() {
@@ -89,22 +89,22 @@ public class User implements UserDetails{
 
     @Override
     public boolean isAccountNonExpired() {
-        return accountNonExpired;//是否过期
+        return isaccountNonExpired;//是否过期
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return accountNonLocked;//是否加锁
+        return isaccountNonLocked;//是否加锁
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return credentialsNonExpired;//证书是否过期
+        return iscredentialsNonExpired;//证书是否过期
     }
 
     @Override
     public boolean isEnabled() {
-        return enabled;//是否禁用
+        return isenabled;//是否禁用
     }
 
 }
