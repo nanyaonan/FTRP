@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.excalibur.ftrp.repository.UserRepository;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity//启用WEB安全功能
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         auth.userDetailsService(new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                return userRepository.findOne(username);//验证账户
+                return userRepository.getOne(username);//验证账户
             }
         });
         //auth.jdbcAuthentication().dataSource(dataSource);//基于数据库表进行认证，调用默认的方法进行认证
